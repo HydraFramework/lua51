@@ -558,7 +558,10 @@
 			buildSettings = {
 				DSTROOT = /tmp/lua51.dst;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				OTHER_CFLAGS = "-DLUA_USER_H=\"\\\"luauser.h\\\"\"";
+				OTHER_CFLAGS = (
+					"-DLUA_USER_H=\"\\\"luauser.h\\\"\"",
+					"-DLUA_COMPAT_ALL",
+				);
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
@@ -570,7 +573,10 @@
 			buildSettings = {
 				DSTROOT = /tmp/lua51.dst;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				OTHER_CFLAGS = "-DLUA_USER_H=\"\\\"luauser.h\\\"\"";
+				OTHER_CFLAGS = (
+					"-DLUA_USER_H=\"\\\"luauser.h\\\"\"",
+					"-DLUA_COMPAT_ALL",
+				);
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
