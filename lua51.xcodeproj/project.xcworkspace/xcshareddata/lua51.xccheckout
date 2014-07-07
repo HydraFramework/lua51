@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>CFD8BDFD-E3F7-4A01-9E14-04834D67CBEA</string>
+	<key>IDESourceControlProjectName</key>
+	<string>lua51</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>C305DC4C-B31C-4BBE-B941-780E8E2624CE</key>
+		<string>https://github.com/HydraFramework/lua51.git</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>lua51/lua51.xcodeproj/project.xcworkspace</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>C305DC4C-B31C-4BBE-B941-780E8E2624CE</key>
+		<string>../../..</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>https://github.com/HydraFramework/lua51.git</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>110</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>C305DC4C-B31C-4BBE-B941-780E8E2624CE</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>C305DC4C-B31C-4BBE-B941-780E8E2624CE</string>
+			<key>IDESourceControlWCCName</key>
+			<string>lua51</string>
+		</dict>
+	</array>
+</dict>
+</plist>

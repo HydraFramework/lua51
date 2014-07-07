@@ -1,5 +1,5 @@
 Pod::Spec.new do |s|
-  s.name         = "lua"
+  s.name         = "lua51"
   s.version      = "5.1.5"
   s.summary      = "lua51 library."
   s.description  = <<-DESC
