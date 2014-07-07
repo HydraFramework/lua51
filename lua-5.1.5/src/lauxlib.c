@@ -244,7 +244,7 @@ LUALIB_API void luaI_openlib (lua_State *L, const char *libname,
   if (libname) {
     int size = libsize(l);
     /* check whether lib already exists */
-    luaL_findtable(L, LUA_REGISTRYINDEX, "_LOADED", 1);
+    luaL_findtable(L, LUA_GLOBALSINDEX, "_LOADED", 1);
     lua_getfield(L, -1, libname);  /* get _LOADED[libname] */
     if (!lua_istable(L, -1)) {  /* not found? */
       lua_pop(L, 1);  /* remove previous result */

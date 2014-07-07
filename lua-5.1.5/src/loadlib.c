@@ -452,7 +452,7 @@ static int ll_require (lua_State *L) {
   const char *name = luaL_checkstring(L, 1);
   int i;
   lua_settop(L, 1);  /* _LOADED table will be at index 2 */
-  lua_getfield(L, LUA_REGISTRYINDEX, "_LOADED");
+  lua_getfield(L, LUA_GLOBALSINDEX, "_LOADED");
   lua_getfield(L, 2, name);
   if (lua_toboolean(L, -1)) {  /* is it there? */
     if (lua_touserdata(L, -1) == sentinel)  /* check loops */
@@ -544,7 +544,7 @@ static void modinit (lua_State *L, const char *modname) {
 static int ll_module (lua_State *L) {
   const char *modname = luaL_checkstring(L, 1);
   int loaded = lua_gettop(L) + 1;  /* index of _LOADED table */
-  lua_getfield(L, LUA_REGISTRYINDEX, "_LOADED");
+  lua_getfield(L, LUA_GLOBALSINDEX, "_LOADED");
   lua_getfield(L, loaded, modname);  /* get _LOADED[modname] */
   if (!lua_istable(L, -1)) {  /* not found? */
     lua_pop(L, 1);  /* remove previous result */
@@ -653,7 +653,7 @@ LUALIB_API int luaopen_package (lua_State *L) {
                      LUA_EXECDIR "\n" LUA_IGMARK);
   lua_setfield(L, -2, "config");
   /* set field `loaded' */
-  luaL_findtable(L, LUA_REGISTRYINDEX, "_LOADED", 2);
+  luaL_findtable(L, LUA_GLOBALSINDEX, "_LOADED", 2);
   lua_setfield(L, -2, "loaded");
   /* set field `preload' */
   lua_newtable(L);
