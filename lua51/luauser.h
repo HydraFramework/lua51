@@ -9,6 +9,8 @@
 #ifndef EOSLib2_luauser_h
 #define EOSLib2_luauser_h
 
+#define GLOBAL_LOCK
+
 #undef luai_userstateopen
 #define luai_userstateopen(L)       LuaLockInitial(L)
 
@@ -26,7 +28,9 @@
 typedef struct StateData StateData;
 
 struct StateData{
+#ifndef GLOBAL_LOCK
     pthread_mutex_t lock;
+#endif
     volatile int count;
     lua_State *co;
     int isPage;

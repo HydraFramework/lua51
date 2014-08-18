@@ -21,7 +21,15 @@
 
 #define STATEDATA_TO_CO(L) ((StateData *)((unsigned char *)L - LUAI_EXTRASPACE))->co
 #define STATEDATA_TO_ISPAGE(L) ((StateData *)((unsigned char *)L - LUAI_EXTRASPACE))->isPage
+
+#ifndef GLOBAL_LOCK
 #define STATEDATA_TOLOCK(L) ((StateData *)((unsigned char *)GetMainState(L) - LUAI_EXTRASPACE))->lock
+#else
+pthread_mutex_t lock;
+int lockInited = 0;
+#define STATEDATA_TOLOCK(L) lock
+#endif
+
 #define STATEDATA_TO_COUNT(L) ((StateData *)((unsigned char *)GetMainState(L) - LUAI_EXTRASPACE))->count
 #define STATEDATA_TO_COUNT_PAGE(L) ((StateData *)((unsigned char *)GetPageState(L) - LUAI_EXTRASPACE))->count
 
@@ -51,10 +59,18 @@ void MarkAsPage(lua_State *L){
 }
 
 void LuaLockInitial(lua_State * L){
-    pthread_mutexattr_t a;
-    pthread_mutexattr_init(&a);
-    pthread_mutexattr_settype(&a, PTHREAD_MUTEX_RECURSIVE);
-    pthread_mutex_init(&STATEDATA_TOLOCK(L), &a);
+#ifdef GLOBAL_LOCK
+    if (!lockInited) {
+#endif
+        pthread_mutexattr_t a;
+        pthread_mutexattr_init(&a);
+        pthread_mutexattr_settype(&a, PTHREAD_MUTEX_RECURSIVE);
+        pthread_mutex_init(&STATEDATA_TOLOCK(L), &a);
+        
+        lockInited = 1;
+#ifdef GLOBAL_LOCK
+    }
+#endif
     
     STATEDATA_TO_COUNT(L) = 0;
     STATEDATA_TO_CO(L) = L;
@@ -77,7 +93,9 @@ void LuaLockInitialThread(lua_State * L, lua_State * co){
 }
 
 void LuaLockFinalState(lua_State * L){
+#ifndef GLOBAL_LOCK
     pthread_mutex_destroy(&STATEDATA_TOLOCK(L));
+#endif
 }
 
 void LuaLockFinalThread(lua_State * L, lua_State * co){
