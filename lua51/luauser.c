@@ -174,8 +174,8 @@ void decrRef(lua_State *L){
         lua_gc(ROOT, LUA_GCCOLLECT, 0);
     }
     
-    if (STATEDATA_TO_COUNT(L) <= 0) {
-        lua_close(GetMainState(L));
+    if (STATEDATA_TO_COUNT(ROOT) <= 0) {
+        lua_close(ROOT);
         printf("dealloc state\n");
     }
 }
